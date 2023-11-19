@@ -6,27 +6,29 @@ use Illuminate\Http\Request;
 
 class GreetingController extends Controller
 {
-    public function greetings($timing)
+    public function greetings($words)
     {
-        switch ($timing) {
+        switch ($words) {
             case "morning":
+                $timing = "朝のあいさつ";
                 $greeting = "おはようございます";
-                return view('greetings.morning', ['greeting' => $greeting]);
                 break;
             case "afternoon":
+                $timing = "昼のあいさつ";
                 $greeting = "こんにちは";
-                return view('greetings.afternoon', ['greeting' => $greeting]);
                 break;
             case "evening":
+                $timing = "夕方のあいさつ";
                 $greeting = "こんばんは";
-                return view('greetings.evening', ['greeting' => $greeting]);
                 break;
             case "night":
+                $timing = "夜のあいさつ";
                 $greeting = "おやすみなさい";
-                return view('greetings.night', ['greeting' => $greeting]);
                 break;
             default:
+                $timing = "エラー";
                 $greeting = "時間帯を正しく入力してください";
         }
+                return view('greetings.comments', ['words' => $words, 'timing' => $timing, 'greeting' => $greeting]);
     }
 }
